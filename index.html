@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="background"></div>
+    <div class="content">
+      <h1>Password Generator</h1>
+      <div id="options" class="options">
+        <div class="option">
+          <label for="include-letters">
+            <input type="checkbox" id="include-letters" checked>
+            <span>Include letters (a-z, A-Z)</span>
+          </label>
+        </div>
+        <div class="option">
+          <label for="include-numbers">
+            <input type="checkbox" id="include-numbers" checked>
+            <span>Include numbers (0-9)</span>
+          </label>
+        </div>
+        <div class="option">
+          <label for="include-symbols">
+            <input type="checkbox" id="include-symbols" checked>
+            <span>Include symbols (!@#$%^&*()_)</span>
+          </label>
+        </div>
+      </div>
+      <div id="password-length" class="password-length">
+        <div id="length-text-container"> <span id="length-text">Length: </span>
+        </div>
+        <input type="range" id="length-slider" min="4" max="40" value="16">
+      </div>
+      <div id="password-box" class="password-box">Generated Password</div>
+      <div class="button-container">
+        <!-- <button id="generate-button">Generate Password</button> -->
+        <button id="copy-button">Copy Password</button>
+      </div>
+
+      <div id="generate-button" class="generate-button">
+        <img class="generate-button" src="assets/circular-arrow.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="toast">
+    <div class="toast-content">
+      <i class="fas fa-solid fa-check check"></i>
+      <div class="message">
+        <span class="text text-1">Success</span>
+        <span class="text text-2">Password copied to clipboard</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
