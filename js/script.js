@@ -36,11 +36,10 @@ function validateSelection() {
 
 function updateBackground(passwordLength) {
   const background = document.querySelector(".background");
-  background.style.backgroundColor = passwordLength < 9 ? "#be4e3a" : "#1C815A";
+  background.style.backgroundColor = passwordLength < 14 ? "#be4e3a" : "#1C815A";
 }
 
 lengthSlider.addEventListener("input", updatePassword);
-generateButton.addEventListener("click", updatePassword);
 window.addEventListener("DOMContentLoaded", updatePassword);
 
 function generatePassword() {
@@ -80,13 +79,38 @@ copyButton.addEventListener("click", () => {
     progress.classList.add("active");
     timer1 = setTimeout(() => {
       toast.classList.remove("active");
-    }, 3000); //1s = 1000 milliseconds
+    }, 3000);
     timer2 = setTimeout(() => {
       progress.classList.remove("active");
     }, 3300);
   });
 });
 
+var isUpdatingPassword = false;
+
+document.getElementById("generate-button").addEventListener("click", function () {
+  var button = this;
+
+  if (isUpdatingPassword) {
+    return;
+  }
+
+  isUpdatingPassword = true;
+
+  button.disabled = true;
+
+  button.classList.add("active");
+
+  var animationDuration = 1200;
+
+  updatePassword();
+
+  setTimeout(function () {
+    button.classList.remove("active");
+    button.disabled = false;
+    isUpdatingPassword = false;
+  }, animationDuration);
+});
 
 closeIcon.addEventListener("click", () => {
   toast.classList.remove("active");
@@ -98,5 +122,4 @@ closeIcon.addEventListener("click", () => {
   clearTimeout(timer2);
 });
 
-// Initial generation on page load
 window.onload = updatePassword;
